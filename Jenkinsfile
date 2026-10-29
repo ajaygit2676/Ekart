@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         SCANNER_HOME = tool 'sonar-scanner'
-        NVD_API_KEY = credentials('nvd-api-key')  // Jenkins secret text credential
+      
     }
 
     tools {
@@ -43,12 +43,11 @@ pipeline {
 
         stage('OWASP Dependency Check') {
             steps {
-                  withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_API_KEY')]) {
-                    dependencyCheck additionalArguments: "--nvdApiKey=$NVD_API_KEY",
-                                    odcInstallation: 'DC'
+                 dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DC'
+                 dependencyCheckPublisher pattern: '**/dependancy-check-report.xml                   
              }
         }
-        }
+        
 
         stage('Build') {
             steps {
