@@ -76,7 +76,7 @@ pipeline {
             steps{
                 script{
                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                   sh 'docker login -u AjayGit2676 -p ${dockerhubpwd}'}
+                   sh 'echo "$dockerhubpwd" | docker login -u AjayGit2676 -password-stdin'}
                    sh 'docker push ajaygit2676/ekart:latest'
                 }
             }
