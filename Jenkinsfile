@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('git checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/AjayGit2676/Ekart.git'
+                git branch: 'master', url: 'https://github.com/ajaygit2676/Ekart.git'
             }
         }
 
@@ -67,7 +67,7 @@ pipeline {
         stage('build and Tag docker image') {
             steps {
                 script {
-                        sh "docker build -t AjayGit2676/Ekart:latest -f docker/Dockerfile ."
+                        sh "docker build -t ajaygit2676/Ekart:latest -f docker/Dockerfile ."
                     }
             }
         }
